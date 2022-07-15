@@ -14,9 +14,9 @@ export default function Page(props){
 
     const [searchData,setSearchData] = useState([])
     const [inputValue, setInputValue] = useState()
-    const [x, setX] = useState()
+    const [hasSearched, setHasSearched] = useState()
     useEffect(()=>{
-        setX(false)
+        setHasSearched(false)
     },[])
     
     useEffect(()=>{
@@ -30,7 +30,7 @@ export default function Page(props){
         .then(res => res.json())
         .then(data => {
             setSearchData(data)
-            setX(true)
+            setHasSearched(true)
         })
     }
 
@@ -43,7 +43,7 @@ export default function Page(props){
 
     const empty = () => {
         return(
-            <div id='empty'>
+            <div class='empty'>
                 <img src={filmicon} alt="" />
                 <p className='text-grey'>Start exploring</p>
             </div>
@@ -68,12 +68,12 @@ export default function Page(props){
 
 
     const content = () => {
-        if(x){
+        if(hasSearched){
             if(searchData.Response === 'False'){
                 return noResult()
             }
             else{
-                return <div id='list' className='container'> {result()} </div>
+                return <div className='container'> {result()} </div>
             }
         }else{
             return empty()
@@ -84,19 +84,19 @@ export default function Page(props){
     return(
         <div>
             <header>
-                <div id="header" className='flex width container header'>
+                <div className='flex width container header'>
                     <h1 className="text-white fw-800 fs-1">Find your film</h1>
                     <Link to='/watchlist' className='text-white'>My watchlist</Link>
                     {/* <button onClick={() => props.setPage('watchlist')} className="text-white fw-700 fs-2">My Watchlist</button> */}
                 </div>
             </header>
             <div className='container'>
-                <div id="search-bar" className='bg-dark'>
-                    <div id='icon-container'>
-                        <img id='search-icon' src={searchIcon} alt="" />
+                <div className='bg-dark search-bar'>
+                    <div class='icon-container'>
+                        <img class='search-icon' src={searchIcon} alt="" />
                     </div>
-                    <input onChange={handleChange} autoComplete="off" id='search-input' className='bg-dark text-white' type="text" />
-                    <button onClick={search} id='search-button' className='bg-grey fw-500 text-white'>Search</button>
+                    <input onChange={handleChange} autoComplete="off" className='search-input bg-dark text-white' type="text" />
+                    <button onClick={search} className='search-button bg-grey fw-500 text-white'>Search</button>
                 </div>
             </div>
             {content()}
