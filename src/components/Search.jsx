@@ -7,6 +7,7 @@ import React, {useState, useContext} from 'react'
 import { useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import { WatchlistContext } from "../WatchlistContext"
+import Header from './Header'
 
 export default function Page(props){
 
@@ -83,13 +84,7 @@ export default function Page(props){
  
     return(
         <div>
-            <header>
-                <div className='flex width container header'>
-                    <h1 className="text-white fw-800 fs-1">Find your film</h1>
-                    <Link to='/watchlist' className='text-white fs-2'>My watchlist</Link>
-                    {/* <button onClick={() => props.setPage('watchlist')} className="text-white fw-700 fs-2">My Watchlist</button> */}
-                </div>
-            </header>
+            <Header header={1}/>
             <div className='container'>
                 <div className='bg-dark search-bar'>
                     <div class='icon-container'>

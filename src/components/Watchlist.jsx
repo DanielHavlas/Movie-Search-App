@@ -4,6 +4,7 @@ import Movie from './Movie'
 import {Link} from 'react-router-dom'
 import React,{useContext} from "react"
 import { WatchlistContext } from "../WatchlistContext"
+import Header from './Header'
 
 export default function Watchlist(props){
 
@@ -28,12 +29,7 @@ export default function Watchlist(props){
 
     return(
         <div>
-            <header>
-                <div className='flex width container header'>
-                    <h1 className="text-white fw-800 fs-1">Watchlist</h1>
-                    <Link to='/' className="text-white">Search for movies</Link>
-                </div>
-            </header>
+            <Header header={2}/>
             {watchlistArray.length !== 0? <div className='container'> {main} </div>:empty()} 
         </div>
     )
