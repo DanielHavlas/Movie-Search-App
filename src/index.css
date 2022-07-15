@@ -1,13 +1,174 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+body{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family:'Inter';
+  min-height: 100vh;
+  background-color: hsl(var(--clr-black));
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root{
+  --clr-white: 0 0% 100%;
+  --clr-black: 0 0% 7%;
+  --clr-dark: 240 1% 18%;
+  --clr-grey: 0 0% 30%;
+  --clr-light-grey: 0 0% 65%;
+}
+/* colors */
+
+.text-white{color: hsl(var(--clr-white));}
+.text-light{color: hsl(var(--clr-light-grey));}
+.text-grey{color: hsl(var(--clr-grey));}
+.bg-black{background-color: hsl(var(--clr-black));}
+.bg-dark{background-color: hsl(var(--clr-dark));}
+.bg-grey{background-color: hsl(var(--clr-grey));}
+
+.fw-800{font-weight: 800;}
+.fw-700{font-weight: 700;}
+.fw-500{font-weight: 500;}
+
+.fs-1{font-size: 3.5rem;}
+.fs-2{font-size: 1.4rem;}
+.fs-3{font-size: 1.125rem;}
+.fs-4{font-size: 0.875rem;}
+.fs-5{font-size: 0.75rem;}
+
+.lh-20{
+  line-height: 20px;
+}
+
+/* resets */
+button{
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+}
+
+input{
+  border: none;
+}
+input:focus {outline:none;}
+
+a{
+  text-decoration: none;
+}
+
+
+
+/* utils */
+
+.flex{
+  display: flex;
+}
+
+.grid{
+  display: grid;
+}
+
+.container {
+  padding-inline: clamp(5rem, 1.5vw, 10vw);
+  margin-inline: auto;
+  max-width: 50rem;
+}
+
+header{
+  background-color: hsl(var(--clr-black));
+  background-image: url(./images/background.png);
+  background-size: cover;
+  background-position: center right;
+  height: 30vh;
+}
+
+button{
+  cursor: pointer;
+}
+
+.header{
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.poster{
+  height: 12rem;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure{
+    margin: 0; 
+}
+
+#search-bar{
+  position: relative;
+  top: -1.25em;
+  display: flex;
+  justify-content: space-between;
+  height: 2.5em;
+  align-content: center;
+  border-radius: 5px;
+}
+#search-input{
+  width: 100%;
+  letter-spacing: 1px;
+  margin-inline:0;
+}
+
+#search-icon{
+  width: 20px;
+  height: 20px;
+}
+
+#icon-container{
+  width: 3rem;
+  margin-left: 0;
+  position: relative;
+  top: 25%;
+}
+
+#search-button{
+  border-radius: 0 5px 5px 0;
+  letter-spacing: 1px;
+  width: 25%;
+}
+
+#empty{
+  position: relative;
+  top: 20vh;
+}
+
+
+#film{
+  grid-template-columns: 1fr 3fr;
+  margin-block: 2rem;
+  height: 12rem;
+  text-align: left;
+  gap: 1.4rem;
+}
+
+#right > *{
+  margin-top: 2rem;
+}
+
+#x{
+  gap: 2rem;
+}
+
+#watchlist{
+  gap:0.5rem;
+}
+
+.center-vert{
+  position: relative;
+  top: 10rem;
+}
+
+#empty-watchlist-icon{
+  margin-top: 1rem;
+  gap:0.5rem;
+  margin-inline: auto;
 }
