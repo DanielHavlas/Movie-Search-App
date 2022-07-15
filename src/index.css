@@ -82,7 +82,7 @@ header{
   background-color: hsl(var(--clr-black));
   background-image: url(./images/background.png);
   background-size: cover;
-  background-position: center right;
+  background-position: top right;
   height: 30vh;
 }
 

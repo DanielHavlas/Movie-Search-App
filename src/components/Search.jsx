@@ -86,7 +86,7 @@ export default function Page(props){
             <header>
                 <div className='flex width container header'>
                     <h1 className="text-white fw-800 fs-1">Find your film</h1>
-                    <Link to='/watchlist' className='text-white'>My watchlist</Link>
+                    <Link to='/watchlist' className='text-white fs-2'>My watchlist</Link>
                     {/* <button onClick={() => props.setPage('watchlist')} className="text-white fw-700 fs-2">My Watchlist</button> */}
                 </div>
             </header>
