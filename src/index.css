@@ -142,7 +142,7 @@ figure{
 }
 
 
-#film{
+.film{
   grid-template-columns: 1fr 3fr;
   margin-block: 2rem;
   height: 12rem;
@@ -150,15 +150,15 @@ figure{
   gap: 1.4rem;
 }
 
-#right > *{
+.right > *{
   margin-top: 2rem;
 }
 
-#x{
+.gap-2{
   gap: 2rem;
 }
 
-#watchlist{
+.gap-1{
   gap:0.5rem;
 }
 
@@ -169,6 +169,5 @@ figure{
 
 #empty-watchlist-icon{
   margin-top: 1rem;
-  gap:0.5rem;
-  margin-inline: auto;
+  justify-content: center;
 }

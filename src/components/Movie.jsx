@@ -16,18 +16,18 @@ export default function(props){
 
     return(
         <div>
-            <article id="film" className="grid">
+            <article className="grid film">
                 <img className="poster" src={filmData.Poster} alt="" />
-                <div id="right">
+                <div class="right">
                     <div className="flex">
                         <h3 className="text-white fs-3">{filmData.Title}</h3>
                         <img src="" alt="" />
                         <p className="text-white">{filmData.imdbRating}</p>
                     </div>
-                    <div className="flex fs-5" id="x">
+                    <div className="flex fs-5 gap-2">
                         <p className="text-white">{filmData.Runtime}</p>
                         <p className="text-white">{filmData.Genre}</p>
-                        <button onClick={()=> watchlist(props.id)} className="flex" id="watchlist">
+                        <button onClick={()=> watchlist(props.id)} className="flex gap-1">
                             <img src={props.icon} alt="" />
                             <p className="text-white">{props.text}</p>
                         </button>
