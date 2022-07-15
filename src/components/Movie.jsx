@@ -32,10 +32,10 @@ export default function(props){
                             <p className="text-white">{props.text}</p>
                         </button>
                     </div>
-                    <p className="text-light fs-4 lh-20">{filmData.Plot}</p>
+                    <p className="text-light fs-4 lh-20 invisible">{filmData.Plot}</p>
                 </div>
             </article>
-            {props.line?'':<hr/>}
+            {props.line?<hr/>:''}
         </div>
     )
 }

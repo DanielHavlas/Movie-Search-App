@@ -57,7 +57,7 @@ export default function Page(props){
     const result = () => {
         if(searchData.Response == 'True'){
             const main = searchData.Search.map((film, index) => {
-                const line = (index === searchData.Search.length)
+                const line = (index !== searchData.Search.length-1)
                 const isWatchlisted = watchlistArray.includes(film.imdbID)
                 const icon = isWatchlisted? minus : plus
                 return <Movie key={index} id={film.imdbID} line={line} icon={icon} text={'Watchlist'}/>

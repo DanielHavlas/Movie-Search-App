@@ -10,7 +10,7 @@ export default function Watchlist(props){
     const {watchlistArray} = useContext(WatchlistContext)
 
     const main = watchlistArray.map((id, index) => {
-        const line= (index === watchlistArray.length)
+        const line= (index !== watchlistArray.length-1)
         return <Movie key={index} id={id} line={line} icon={minus} text={'Remove'}/>
     })
 
