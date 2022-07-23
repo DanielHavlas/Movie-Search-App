@@ -1,14 +1,16 @@
+import React, {useState, useContext} from 'react'
+import Select from 'react-select'
+import { useEffect } from 'react'
+import {Link} from 'react-router-dom'
+
+import { WatchlistContext } from "../WatchlistContext"
+import Header from './Header'
+
 import searchIcon from '../images/search.png'
 import filmicon from '../images/filmicon.png'
 import Movie from './Movie'
 import plus from "../images/plus.png"
 import minus from "../images/minus.png"
-import React, {useState, useContext} from 'react'
-import { useEffect } from 'react'
-import {Link} from 'react-router-dom'
-import { WatchlistContext } from "../WatchlistContext"
-import Select from 'react-select'
-import Header from './Header'
 
 export default function Page(props){
 
@@ -17,12 +19,13 @@ export default function Page(props){
     const [searchData,setSearchData] = useState([])
     const [inputValue, setInputValue] = useState()
     const [hasSearched, setHasSearched] = useState()
+    const url = `https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`
     useEffect(()=>{
         setHasSearched(false)
     },[])
     
     useEffect(()=>{
-        fetch(`https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`)
+        fetch(url)
         .then(res => res.json())
         .then(data => {
             setSearchData(data)
@@ -32,7 +35,7 @@ export default function Page(props){
 
 
     const search = () => {
-        fetch(`https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`)
+        fetch(url)
         .then(res => res.json())
         .then(data => {
             setSearchData(data)
