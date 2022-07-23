@@ -7,6 +7,7 @@ import React, {useState, useContext} from 'react'
 import { useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import { WatchlistContext } from "../WatchlistContext"
+import Select from 'react-select'
 import Header from './Header'
 
 export default function Page(props){
@@ -21,9 +22,13 @@ export default function Page(props){
     },[])
     
     useEffect(()=>{
-        console.log(searchData)
-
-    },[searchData])
+        fetch(`https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`)
+        .then(res => res.json())
+        .then(data => {
+            setSearchData(data)
+            setHasSearched(true)
+        })
+    },[inputValue])
 
 
     const search = () => {
