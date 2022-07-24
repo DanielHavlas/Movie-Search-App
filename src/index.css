@@ -121,10 +121,14 @@ figure{
   border-radius: 5px;
 }
 .search-input{
-  width: 100%;
+  width: 30%;
   letter-spacing: 1px;
   margin-inline:0;
   min-width: 2rem;
+}
+
+.select{
+  width: 100%;
 }
 
 .search-icon{

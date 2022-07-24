@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import Select from 'react-select'
 import { useEffect } from 'react'
-import {Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 import { WatchlistContext } from "../WatchlistContext"
 import Header from './Header'
@@ -19,7 +19,11 @@ export default function Page(props){
     const [searchData,setSearchData] = useState([])
     const [inputValue, setInputValue] = useState()
     const [hasSearched, setHasSearched] = useState()
+    const [options, setOptions] = useState([])
     const url = `https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`
+    const navigate = useNavigate()
+
+
     useEffect(()=>{
         setHasSearched(false)
     },[])
@@ -29,8 +33,8 @@ export default function Page(props){
         .then(res => res.json())
         .then(data => {
             setSearchData(data)
-            setHasSearched(true)
         })
+
     },[inputValue])
 
 
@@ -43,9 +47,15 @@ export default function Page(props){
         })
     }
 
-    const handleChange = (e) => {
-        setInputValue(e.target.value)
+    const handleChange = (opt) => {
+        return(
+            navigate('/watchlist')
+        )
     }
+
+        
+
+    
 
    
     
@@ -88,7 +98,24 @@ export default function Page(props){
             return empty()
         }
     }
-     
+    
+    function key(input){
+        setInputValue(input)
+        if(searchData.Response === 'True'){
+            
+            const options = searchData.Search.map(film => {
+                console.log(film)
+                return{
+                    value: film.imdbID,
+                    label: film.Title,
+                }
+            })
+            setOptions(options)
+
+        }else if(input===''){
+            setOptions([])
+        }
+    }
  
     return(
         <div>
@@ -98,7 +125,8 @@ export default function Page(props){
                     <div class='icon-container'>
                         <img class='search-icon' src={searchIcon} alt="" />
                     </div>
-                    <input onChange={handleChange} autoComplete="off" className='search-input bg-dark text-white' type="text" />
+                    {/* <input onChange={handleChange} autoComplete="off" className='search-input bg-dark text-white' type="text" /> */}
+                    <Select onInputChange={key} inputValue={inputValue} onChange={handleChange} className='select' options={options}/>
                     <button onClick={search} className='search-button bg-grey fw-500 text-white'>Search</button>
                 </div>
             </div>
