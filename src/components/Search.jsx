@@ -48,8 +48,9 @@ export default function Page(props){
     }
 
     const handleChange = (opt) => {
+
         return(
-            navigate('/watchlist')
+            navigate(`/movie/${opt.value}`)
         )
     }
 
