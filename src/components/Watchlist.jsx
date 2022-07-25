@@ -17,7 +17,7 @@ export default function Watchlist(props){
 
     const empty = () => {
         return(
-            <div className="center-vert ">
+            <div className="center-vert empty">
                 <p className='text-grey fs-3 fw-700'>Your watchlist is looking a little empty...</p>
                 <Link to='/' className="flex gap-1 empty-watchlist">
                     <img src={plus} alt="" />
@@ -29,7 +29,6 @@ export default function Watchlist(props){
 
     return(
         <div>
-            <Header header={2}/>
             {watchlistArray.length !== 0? <div className='container'> {main} </div>:empty()} 
         </div>
     )

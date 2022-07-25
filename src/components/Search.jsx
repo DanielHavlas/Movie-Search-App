@@ -117,17 +117,32 @@ export default function Page(props){
             setOptions([])
         }
     }
- 
+    const searchStyles = {
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: 'hsl(240 1% 18%)',
+            border:'none',
+        }),
+        input: (provided) =>({
+            ...provided,
+            color:'white',
+
+        }),
+        noOptionsMessage: (provided) =>({
+            ...provided,
+            display:'none',
+        }),
+
+    }
     return(
         <div>
-            <Header header={1}/>
             <div className='container'>
                 <div className='bg-dark search-bar'>
                     <div class='icon-container'>
                         <img class='search-icon' src={searchIcon} alt="" />
                     </div>
                     {/* <input onChange={handleChange} autoComplete="off" className='search-input bg-dark text-white' type="text" /> */}
-                    <Select onInputChange={key} inputValue={inputValue} onChange={handleChange} className='select' options={options}/>
+                    <Select onInputChange={key} placeholder='Search' inputValue={inputValue} onChange={handleChange} className='select' styles={searchStyles} options={options}/>
                     <button onClick={search} className='search-button bg-grey fw-500 text-white'>Search</button>
                 </div>
             </div>
