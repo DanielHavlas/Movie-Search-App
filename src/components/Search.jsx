@@ -17,7 +17,7 @@ export default function Page(props){
     const {watchlistArray} = useContext(WatchlistContext)
 
     const [searchData,setSearchData] = useState([])
-    const [inputValue, setInputValue] = useState()
+    const [inputValue, setInputValue] = useState('')
     const [hasSearched, setHasSearched] = useState()
     const [options, setOptions] = useState([])
     const url = `https://www.omdbapi.com/?apikey=dae90303&s=${inputValue}`
@@ -33,6 +33,7 @@ export default function Page(props){
         .then(res => res.json())
         .then(data => {
             setSearchData(data)
+            setHasSearched(false)
         })
 
     },[inputValue])
@@ -71,19 +72,17 @@ export default function Page(props){
     }
 
     const noResult = () => {
-        return <p className='fs-3 fw-700 text-grey center-vert'>Unable to find what you're looking for. Please try another search</p>
+        return <p className='fs-3 fw-700 text-grey empty'>Unable to find what you're looking for. Please try another search</p>
     }
 
     const result = () => {
-        if(searchData.Response == 'True'){
-            const main = searchData.Search.map((film, index) => {
-                const line = (index !== searchData.Search.length-1)
-                const isWatchlisted = watchlistArray.includes(film.imdbID)
-                const icon = isWatchlisted? minus : plus
-                return <Movie key={index} id={film.imdbID} line={line} icon={icon} text={'Watchlist'}/>
-            })
-            return main
-        }
+        const main = searchData.Search.map((film, index) => {
+            const line = (index !== searchData.Search.length-1)
+            const isWatchlisted = watchlistArray.includes(film.imdbID)
+            const icon = isWatchlisted? minus : plus
+            return <Movie key={index} id={film.imdbID} line={line} icon={icon} text={'Watchlist'}/>
+        })
+        return main
     }
 
 
@@ -99,13 +98,16 @@ export default function Page(props){
             return empty()
         }
     }
+
+    const [key,setKey] = useState()
     
-    function key(input){
+    function input(input){
+        const tempInput = inputValue
         setInputValue(input)
+        if(input==='' && key !=='Backspace'){setInputValue(tempInput)}
         if(searchData.Response === 'True'){
             
             const options = searchData.Search.map(film => {
-                console.log(film)
                 return{
                     value: film.imdbID,
                     label: film.Title,
@@ -113,9 +115,8 @@ export default function Page(props){
             })
             setOptions(options)
 
-        }else if(input===''){
-            setOptions([])
         }
+        
     }
     const searchStyles = {
         control: (provided) => ({
@@ -132,6 +133,10 @@ export default function Page(props){
             ...provided,
             display:'none',
         }),
+        indicatorsContainer: (provided) =>({
+            ...provided,
+            display:'none',
+        }),
 
     }
     return(
@@ -141,8 +146,7 @@ export default function Page(props){
                     <div class='icon-container'>
                         <img class='search-icon' src={searchIcon} alt="" />
                     </div>
-                    {/* <input onChange={handleChange} autoComplete="off" className='search-input bg-dark text-white' type="text" /> */}
-                    <Select onInputChange={key} placeholder='Search' inputValue={inputValue} onChange={handleChange} className='select' styles={searchStyles} options={options}/>
+                    <Select onKeyDown={(k)=> setKey(k.code)} onInputChange={input} placeholder='Search' inputValue={inputValue} onChange={handleChange} className='select' styles={searchStyles} options={options} />
                     <button onClick={search} className='search-button bg-grey fw-500 text-white'>Search</button>
                 </div>
             </div>

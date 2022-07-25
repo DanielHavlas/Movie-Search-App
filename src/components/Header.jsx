@@ -4,7 +4,6 @@ import {Link, useLocation} from 'react-router-dom'
 export default function Header(){
 
     const location = useLocation()
-    console.log(location);
     const heading = location.pathname==='/'? 'Find your film' : location.pathname==='/watchlist'? 'My watchlist': ''
 
 

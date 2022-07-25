@@ -1,5 +1,8 @@
 import React,{useState, useContext} from "react"
 import {useParams} from 'react-router-dom'
+import plus from "../images/plus.png"
+import minus from "../images/minus.png"
+import star from "../images/star.png"
 
 import { WatchlistContext } from "../WatchlistContext"
 
@@ -12,9 +15,10 @@ export default function(){
     .then(res => res.json())
     .then(data => setFilmData(data))
 
-    const {watchlist} = useContext(WatchlistContext)
+    const {watchlistArray,watchlist} = useContext(WatchlistContext)
 
-
+    const icon = watchlistArray.includes(imdbID)? minus : plus
+    const text = watchlistArray.includes(imdbID)? 'Remove' : 'Watchlist'
     
 
     return(
@@ -22,7 +26,7 @@ export default function(){
             <article className="film-detail">
                 <div className="flex title">
                     <h3 className="text-white fs-3 overflow">{filmData.Title}</h3>
-                    <img src="" alt="" />
+                    <img className="star" src={star} alt="" />
                     <p className="text-white">{filmData.imdbRating}</p>
                 </div>
                 <div className="flex gap-2">
@@ -31,9 +35,9 @@ export default function(){
                         <div className="flex fs-5 gap-2">
                             <p className="text-white">{filmData.Runtime}</p>
                             <p className="text-white">{filmData.Genre}</p>
-                            <button onClick={()=> watchlist(imdbID)} className="flex gap-1">
-                                <img src={'icon'} alt="" />
-                                <p className="text-white">{'watchlist'}</p>
+                            <button onClick={()=> watchlist(imdbID)} className="wathclist-btn flex gap-1">
+                                <img src={icon} alt="" />
+                                <p className="text-white">{text}</p>
                             </button>
                         </div>
                         <p className="text-light fs-4 lh-20">{filmData.Plot}</p>
