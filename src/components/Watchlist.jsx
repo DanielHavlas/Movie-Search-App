@@ -4,7 +4,6 @@ import Movie from './Movie'
 import {Link} from 'react-router-dom'
 import React,{useContext} from "react"
 import { WatchlistContext } from "../WatchlistContext"
-import Header from './Header'
 
 export default function Watchlist(props){
 
