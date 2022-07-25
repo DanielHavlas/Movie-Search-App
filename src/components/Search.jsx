@@ -27,6 +27,20 @@ export default function Page(props){
     useEffect(()=>{
         setHasSearched(false)
     },[])
+
+    useEffect(()=>{
+        if(searchData.Response === 'True'){
+            
+            const options = searchData.Search.map(film => {
+                return{
+                    value: film.imdbID,
+                    label: film.Title,
+                }
+            })
+            setOptions(options)
+
+        }
+    },[searchData])
     
     useEffect(()=>{
         fetch(url)
