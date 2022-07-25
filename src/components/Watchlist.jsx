@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import React,{useContext} from "react"
 import { WatchlistContext } from "../WatchlistContext"
 
-export default function Watchlist(props){
+export default function Watchlist(){
 
     const {watchlistArray} = useContext(WatchlistContext)
 
